@@ -161,14 +161,14 @@ $(document).ready(function() {
 		fullscreen();
 	});
 
-	// 03. HIDDEN ALL ANIMATION CLASS
-	//==================================================================================
-	// Waypoint will animate it later (04.5 Waypoint Animate CSS)
-	if( !device.tablet() && !device.mobile() && !isIE9() ) {
-			$('.animation').css({
-				visibility: 'hidden'
-			});
-	}
+	// // 03. HIDDEN ALL ANIMATION CLASS
+	// //==================================================================================
+	// // Waypoint will animate it later (04.5 Waypoint Animate CSS)
+	// if( !device.tablet() && !device.mobile() && !isIE9() ) {
+	// 		$('.animation').css({
+	// 			visibility: 'hidden'
+	// 		});
+	// }
 
 	// 04. PACE PRELOADER
 	//==================================================================================
@@ -521,172 +521,4 @@ $(document).ready(function() {
 			$(".photo-item .layer.hover-animation").css("transition","none");
 		 }
 	 }
-
-
-	// 15. AUDIO
-	//==================================================================================
-
-	// 15.1 Reset Mute Control (Chrome and Safari Mobile)
-	//----------------------------------------------------------------------------------
-	//	Chrome and Safari IOS not cannot autoplay audio.
-	//	Default audio will reset to mute
-	 if (isChromeMobile() || isIOS()){
-		var audioElm = document.getElementById('audioID');
-
-		if (audioElm != null){
-			audioElm.muted = true;
-
-			var mute_icon = $("#mute-audio").data("mute-icon");
-			var unmute_icon = $("#mute-audio").data("unmute-icon");
-
-			$("#mute-audio").removeAttr('data-start').attr({ 'data-start': 'mute' });
-			$("#mute-audio").removeAttr('data-mute-icon').attr({ 'data-mute-icon': unmute_icon });
-			$("#mute-audio").removeAttr('data-unmute-icon').attr({ 'data-unmute-icon': mute_icon });
-			$("#mute-audio i").removeClass();
-			$("#mute-audio i").addClass(mute_icon);
-		}
-	 }
-
-
-	// 15.2 On toggle mute button
-	//----------------------------------------------------------------------------------
-	 $("#mute-audio").click(function(e){
-		e.preventDefault();
-		var audioElm = document.getElementById('audioID');
-
-		var on_start = $(this).data("start");
-		var mute_icon = $(this).data("mute-icon");
-		var unmute_icon = $(this).data("unmute-icon");
-
-		if (on_start == "unmute"){
-			if ($("#mute-audio i").hasClass( unmute_icon )){
-				$("#mute-audio i").removeClass( unmute_icon );
-				$("#mute-audio i").addClass( mute_icon );
-				if (isIOS()){
-					//Because of IOS cannot mute by script, then change it to pause.
-					audioElm.pause();
-				}
-				else
-				{
-					audioElm.muted = true;
-				}
-			}
-			else
-			{
-				$("#mute-audio i").removeClass( mute_icon );
-				$("#mute-audio i").addClass( unmute_icon );
-				audioElm.play();
-				audioElm.muted = false;
-			}
-		}
-		else if (on_start == "mute"){
-			if ($("#mute-audio i").hasClass( mute_icon )){
-				$("#mute-audio i").removeClass( mute_icon );
-				$("#mute-audio i").addClass( unmute_icon );
-				audioElm.play();
-				audioElm.muted = false;
-			}
-			else
-			{
-				$("#mute-audio i").removeClass( unmute_icon );
-				$("#mute-audio i").addClass( mute_icon );
-				if (isIOS()){
-					//Because of IOS cannot mute by script, then change it to pause.
-					audioElm.pause();
-				}
-				else
-				{
-					audioElm.muted = true;
-				}
-			}
-		}
-	});
-
-
-	// 16. VIDEO CONTROL
-	//==================================================================================
-
-	// 16.1 Hide Video Control (Mobile / Tablet)
-	//----------------------------------------------------------------------------------
-	if ((device.tablet() || device.mobile()) && !isIE11desktop()) {
-		$(".hide-control-onmobile").addClass("mobile");
-	}
-
-	// 16.2 Play Pause Video
-	//----------------------------------------------------------------------------------
-	if( device.tablet() || device.mobile() ) {
-		$(".slide-video-control").hide();
-	}
-
-	$("#play-pause").click(function(e){
-		e.preventDefault();
-		var video = $(".slide-video").data("vide").getVideoObject();
-		var on_start = $(this).data("start");
-		var pause_icon = $(this).data("pause-icon");
-		var play_icon = $(this).data("play-icon");
-
-		if (on_start == "play"){
-			if ($("#play-pause i").hasClass( pause_icon )){
-				$("#play-pause i").removeClass( pause_icon );
-				$("#play-pause i").addClass( play_icon );
-				video.pause();
-			}
-			else
-			{
-				$("#play-pause i").removeClass( play_icon );
-				$("#play-pause i").addClass( pause_icon );
-				video.play();
-			}
-		}
-		else if ($(this).data("start") == "pause"){
-			if ($("#play-pause i").hasClass( play_icon )){
-				$("#play-pause i").removeClass( play_icon );
-				$("#play-pause i").addClass( pause_icon );
-				video.play();
-			}
-			else
-			{
-				$("#play-pause i").removeClass( pause_icon );
-				$("#play-pause i").addClass( play_icon );
-				video.pause();
-			}
-		}
-
-
-	});
-
-	$("#mute").click(function(e){
-		e.preventDefault();
-		var on_start = $(this).data("start");
-		var mute_icon = $(this).data("mute-icon");
-		var unmute_icon = $(this).data("unmute-icon");
-
-		if (on_start == "unmute"){
-			if ($("#mute i").hasClass( unmute_icon )){
-				$("#mute i").removeClass( unmute_icon );
-				$("#mute i").addClass( mute_icon );
-				$(".slide-video video").prop('muted', true);
-			}
-			else
-			{
-				$("#mute i").removeClass( mute_icon );
-				$("#mute i").addClass( unmute_icon );
-				$(".slide-video video").prop('muted', false);
-			}
-		}
-		else if (on_start == "mute"){
-			if ($("#mute i").hasClass( mute_icon )){
-				$("#mute i").removeClass( mute_icon );
-				$("#mute i").addClass( unmute_icon );
-				$(".slide-video video").prop('muted', false);
-			}
-			else
-			{
-				$("#mute i").removeClass( unmute_icon );
-				$("#mute i").addClass( mute_icon );
-				$(".slide-video video").prop('muted', true);
-			}
-		}
-	});
-
 });
