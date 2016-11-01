@@ -189,11 +189,15 @@
 /*===============================================*/
 /* 00. PRELOADER		 						 */
 /*===============================================*/
-/* See: */
-/* - preloader.css */
-/* - preloader-couple-name.css */
-/* - preloader-default.css */
-/* - pace/pace-theme-minimal.tmpl.css*/
+#preloader{
+ 	background-color:#f6f6f6;
+ 	position:fixed;
+ 	top:0;
+ 	left:0;
+ 	right:0;
+ 	bottom:0;
+ 	z-index:9999;
+}
 
 
 /*===============================================*/
@@ -530,7 +534,7 @@ img.with-border{
 }
 
 .split-margin{
-	margin-left:80px;
+	margin-left:110px;
 }
 
 /* ----------------------------------------------*/
