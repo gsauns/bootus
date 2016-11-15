@@ -33,6 +33,10 @@
     #nav-menu > li:before{
         font-size:13px;
     }
+    #nav-bar.nav-center .logo-wrapper{
+        top: 0;
+        right: 0;
+    }
 }
 
 .iframe-container{
