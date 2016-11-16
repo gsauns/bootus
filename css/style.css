@@ -67,6 +67,18 @@
     width: 100%;
 }
 
+.clock {
+    display: inline-block;
+    width: auto;
+    margin: 3em;
+}
+
+.flip-clock-label {
+    font-family: 'Roboto Slab';
+    font-size: 16px;
+    font-weight:bold;
+}
+
 .slab-header {
     font-family: 'Roboto Slab';
 }

@@ -326,12 +326,17 @@ $(document).ready(function() {
 
 	// 07. COUNTDOWN
 	//===================================================================================
-	var theday = new Date();
-	theday = new Date(2017, 8, 22);
-	$('#countdown').countdown({until: theday, format: 'DHMS'});
-	// $('#countdown').countdown($.countdown.regionalOptions['custom-label']);
+	var theday = new Date(2017, 8, 22);
+	$('.clock').FlipClock(theday, {
+		clockFace: 'DailyCounter',
+		countdown: true
 
-	$('#date-countdown').countdown({until: theday, format: 'DHMS'});
+	});
+
+	// $('#countdown').countdown({until: theday, format: 'DHMS'});
+	// // $('#countdown').countdown($.countdown.regionalOptions['custom-label']);
+	//
+	// $('#date-countdown').countdown({until: theday, format: 'DHMS'});
 
 	// 08. MOBILE MENU
 	//==================================================================================
