@@ -327,11 +327,17 @@ $(document).ready(function() {
 	// 07. COUNTDOWN
 	//===================================================================================
 	var theday = new Date(2017, 8, 22);
-	$('.clock').FlipClock(theday, {
-		clockFace: 'DailyCounter',
-		countdown: true
-
-	});
+	$('#clock').countdown('2017/09/22')
+		.on('update.countdown', function (event) {
+			var format = '%H:%M:%S';
+  			if(event.offset.totalDays > 0) {
+    			format = '%-n day%!n, ' + format;
+  			}
+  			if(event.offset.months > 0) {
+    			format = '%-m month%!m, ' + format;
+  			}
+  			$(this).html(event.strftime(format));
+		});
 
 	// $('#countdown').countdown({until: theday, format: 'DHMS'});
 	// // $('#countdown').countdown($.countdown.regionalOptions['custom-label']);

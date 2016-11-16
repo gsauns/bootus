@@ -67,16 +67,14 @@
     width: 100%;
 }
 
-.clock {
-    display: inline-block;
-    width: auto;
-    margin: 3em;
+#clock {
+    font-family: 'Lobster Two';
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.flip-clock-label {
-    font-family: 'Roboto Slab';
-    font-size: 16px;
-    font-weight:bold;
+.countdown {
+    padding-bottom: 20px;
 }
 
 .slab-header {
