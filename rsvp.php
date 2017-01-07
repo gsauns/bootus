@@ -1,3 +1,4 @@
 <?php
-echo "Hello"
+$name = $_POST['name'];
+echo $name;
 ?>
