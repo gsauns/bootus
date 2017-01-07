@@ -357,9 +357,87 @@ $(document).ready(function() {
 
 	// 11. RSVP
 	//==================================================================================
-	if ($("#rsvpform").length){
-		$("#rsvpform").ajaxrsvp();
-	}
+	// if ($("#rsvpform").length){
+	// 	$("#rsvpform").ajaxrsvp();
+	// }
+	$('#rsvpform').on('submit', function (e) {
+		e.preventDefault();
+
+		$('div.form-group').removeClass('bg-danger');
+		$('p.help-block').empty();
+
+		var $footer = $('div#form-footer'),
+			$messagep = $('p#form-message'),
+			valid = true,
+			error_message = '',
+			footer_message = '';
+
+		$footer.removeClass('bg-danger bg-success text-danger text-success');
+		$messagep.empty();
+
+		if ($('input#name').val().trim().length == 0) {
+			error_message = "You have to <strong>at least</strong> tell us who you are.";
+			footer_message += error_message + '<br>';
+			$('div#form-group-name').addClass('bg-danger');
+			$('div#form-group-name > p.help-block').html(error_message);
+
+			valid = false;
+		}
+		if (!($('select#attending').val())) {
+			error_message = "Are you coming or not?";
+			footer_message += error_message;
+			$('div#form-group-attending').addClass('bg-danger');
+			$('div#form-group-attending > p.help-block').html(error_message);
+
+			valid = false;
+		}
+		else {
+			if ($('select#attending').val() == "1") {
+				// attending but didn't tell how many
+				var $guests = $('input#num_guests');
+				if ($guests.val().trim().length == 0 || isNaN($guests.val().trim())) {
+					error_message = "If you're coming, we need to know how many there are in the group you're responding for.";
+					footer_message += error_message;
+					$('div#form-group-attending').addClass('bg-danger');
+					$('div#form-group-num-guests > p.help-block').html(error_message);
+
+					valid = false;
+				}
+				else if ($guests.val().trim() == "0") {
+					error_message = "C'mon. You're not bringing zero people.";
+					footer_message += error_message;
+					$('div#form-group-attending').addClass('bg-danger');
+					$('div#form-group-num-guests > p.help-block').html(error_message);
+				}
+				else if (parseInt($guests.val().trim()) < 0) {
+					error_message = "Really... you are bringing <i>negative</i> people to the wedding?";
+					footer_message += error_message;
+					$('div#form-group-attending').addClass('bg-danger');
+					$('div#form-group-num-guests > p.help-block').html(error_message);
+				}
+			}
+		}
+
+		if (valid) {
+			var data = $(this).serialize();
+			console.log(data);
+		}
+		else {
+			$footer.addClass('bg-danger text-danger');
+			$messagep.html(footer_message);
+		}
+	});
+
+	$('select#attending').on('change', function (e) {
+		if ($(this).val() == "1") {
+			$('div.attending-only').removeClass('hidden');
+			$('div#form-group-attending').addClass('m-b-none');
+		}
+		else {
+			$('div.attending-only').addClass('hidden');
+			$('div#form-group-attending').removeClass('m-b-none');
+		}
+	});
 
 	// 11.1 Custom Checkbox
 	//----------------------------------------------------------------------------------

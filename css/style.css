@@ -97,7 +97,9 @@
 .p-t-sm {
     padding-top:10px;
 }
-
+.p-t-md {
+	padding-top: 15px;
+}
 .p-t-lg {
     padding-top:20px;
 }
@@ -107,9 +109,15 @@
 .p-b-xxxl {
     padding-bottom:40px;
 }
+.p-l-none {
+	padding-left: 0;
+}
 
 .m-t-none {
     margin-top: 0;
+}
+.m-b-none {
+    margin-bottom: 0 !important;
 }
 
 /*----------------------
