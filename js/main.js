@@ -360,7 +360,15 @@ $(document).ready(function() {
 	// if ($("#rsvpform").length){
 	// 	$("#rsvpform").ajaxrsvp();
 	// }
-	$('#rsvpform').on('submit', function (e) {
+	$('form#rsvpform input').on('keyup keypress', function (e) {
+		var keyCode = e.keyCode || e.which;
+  		if (keyCode === 13) { 
+    		e.preventDefault();
+    		return false;
+  		}
+	});
+
+	$('form#rsvpform').on('submit', function (e) {
 		e.preventDefault();
 
 		$('div.form-group').removeClass('bg-danger');
@@ -370,7 +378,8 @@ $(document).ready(function() {
 			$messagep = $('p#form-message'),
 			valid = true,
 			error_message = '',
-			footer_message = '';
+			footer_message = '',
+			attending = $('select#attending').val();
 
 		$footer.removeClass('bg-danger bg-success text-danger text-success');
 		$messagep.empty();
@@ -392,7 +401,7 @@ $(document).ready(function() {
 			valid = false;
 		}
 		else {
-			if ($('select#attending').val() == "1") {
+			if (attending == "1") {
 				// attending but didn't tell how many
 				var $guests = $('input#num_guests');
 				if ($guests.val().trim().length == 0 || isNaN($guests.val().trim())) {
@@ -410,7 +419,7 @@ $(document).ready(function() {
 					$('div#form-group-num-guests > p.help-block').html(error_message);
 				}
 				else if (parseInt($guests.val().trim()) < 0) {
-					error_message = "Really... you are bringing <i>negative</i> people to the wedding?";
+					error_message = "Really... you're bringing <i>negative</i> people to the wedding?";
 					footer_message += error_message;
 					$('div#form-group-attending').addClass('bg-danger');
 					$('div#form-group-num-guests > p.help-block').html(error_message);
@@ -419,8 +428,25 @@ $(document).ready(function() {
 		}
 
 		if (valid) {
-			var data = $(this).serialize();
-			console.log(data);
+			var formdata = $(this).serialize();
+			$.ajax({
+				url: 'rsvp.php',
+				type: 'post',
+				data: formdata,
+				success: function (data, status) {
+					if (data == 'success') {
+						$footer.addClass('bg-success text-success');
+						if (attending == "1")
+							$messagep.html("RSVP received. Thanks for coming! We'll see you in September!");
+						else
+							$messagep.html('RSVP received. Wish you could make it. <i class="fa fa-frown-o"></i>');
+					}
+				},
+				error: function (data, status, errorThrown) {
+					console.log('Error', data, status, errorThrown);
+				}
+
+			});
 		}
 		else {
 			$footer.addClass('bg-danger text-danger');
