@@ -11,9 +11,12 @@
         top: 20px;
         right: 35px;
     }
+	.split-margin{
+		margin-left:110px;
+	}
 }
 
-@media (min-width: 1180px) {
+@media (min-width: 1280px) {
     #nav-menu {
         font-size:24px;
     }
@@ -22,11 +25,14 @@
     }
     #nav-bar.nav-center .logo-wrapper{
         top: 20px;
-        right: -10px;
+        right: -40px;
     }
+	.split-margin{
+		margin-left:70px;
+	}
 }
 
-@media (max-width: 1179px) {
+@media (max-width: 1279px) {
     #nav-menu {
         font-size:18px;
     }
@@ -35,8 +41,11 @@
     }
     #nav-bar.nav-center .logo-wrapper{
         top: 0;
-        right: 0;
+        right: -50px;
     }
+	.split-margin{
+		margin-left:60px;
+	}
 }
 
 .container {
@@ -642,10 +651,6 @@ img.with-border{
 
 .last-child-margin{
 	margin-right:0px;
-}
-
-.split-margin{
-	margin-left:110px;
 }
 
 /* ----------------------------------------------*/
