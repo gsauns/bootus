@@ -3175,7 +3175,10 @@ button.mfp-close, button.mfp-arrow {
 
 #nav-menu { display: none }
 #nav-menu.sidebar {display:block}
-#nav-menu.open { display: block; }
+#nav-menu.open { 
+	display: block; 
+	border: 3px solid gray;
+}
 
 #nav-menu,
 .bottom-bar.transparent #nav-menu{
