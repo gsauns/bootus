@@ -297,8 +297,8 @@
 
 16. MEDIA SCREEN
 	- @media screen and (max-width: 1200px)
-	- @media screen and (max-width: 991px)
-	- @media screen and (max-width: 991px) and (orientation : landscape)
+	- @media screen and (max-width: 1039px)
+	- @media screen and (max-width: 1039px) and (orientation : landscape)
 	- @media screen and (max-width: 768px) and (orientation : landscape)
 	- @media screen and (max-width: 768px)
 	- @media screen and (max-width: 480px)
@@ -3131,7 +3131,7 @@ button.mfp-close, button.mfp-arrow {
 
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1039px) {
 /*===============================================*/
 /* 02. NAV BAR 	 							 	 */
 /*===============================================*/
@@ -3500,7 +3500,7 @@ button.mfp-close, button.mfp-arrow {
 
 
 
-@media screen and (max-width: 991px) and (orientation : landscape) {
+@media screen and (max-width: 1039px) and (orientation : landscape) {
 /* ----------------------------------------------*/
 /* 02.2 Logo & Nav Position						 */
 /* ----------------------------------------------*/
