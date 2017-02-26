@@ -401,9 +401,10 @@ $(document).ready(function() {
 			valid = false;
 		}
 		else {
+			var $guests = $('input#num_guests');
+
 			if (attending == "1") {
 				// attending but didn't tell how many
-				var $guests = $('input#num_guests');
 				if ($guests.val().trim().length == 0 || isNaN($guests.val().trim())) {
 					error_message = "If you're coming, we need to know how many there are in the group you're responding for.";
 					footer_message += error_message;
@@ -425,10 +426,16 @@ $(document).ready(function() {
 					$('div#form-group-num-guests > p.help-block').html(error_message);
 				}
 			}
+			else {
+				// not attending, clear song & num of guests
+				$guests.val('');
+				$('input#song_request').val('');
+			}
 		}
 
 		if (valid) {
 			var formdata = $(this).serialize();
+			
 			$.ajax({
 				url: 'rsvp.php',
 				type: 'post',
