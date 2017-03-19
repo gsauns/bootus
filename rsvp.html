@@ -101,9 +101,65 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-1 col-md-10 col-xs-12 p-t-sm">
-                <h2 class="slab-header">Sorry, we haven't set up our RSVP system yet.</h2><h4 class="slab-header">But when we do, you'll do it right here.</h4>We will be updating this site frequently, so check back shortly.
+                <h2 class="slab-header">RSVP Here!</h2>
             </div>
         </div>
+        <form action="rsvp.php" method="post" id="rsvpform">
+            <div class="row">
+                <div id="form-group-name" class="form-group col-md-offset-1 col-md-10 col-xs-12">
+                    <label for="name">Name(s)</label>
+                    <input type="text" id="name" name="name" class="form-control" />
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div id="form-group-email" class="form-group col-md-offset-1 col-md-10 col-xs-12">
+                    <label for="email">E-mail Address (for any wedding detail updates)</label>
+                    <input type="email" id="email" name="email" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div id="form-group-attending" class="form-group col-md-offset-1 col-md-10 col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <label for="attending">Are you attending?</label>
+                            <select id="attending" name="attending" class="form-control">
+                                <option value disabled selected></option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 hidden attending-only">
+                            <div id="form-group-num-guests" class="form-group">
+                                <label for="num_guests">Sweet! How many of you?</label>
+                                <input type="number" id="num_guests" name="num_guests" class="form-control" min="0" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="row hidden attending-only">
+                <div class="form-group col-md-offset-1 col-md-10 col-xs-12">
+                    <label for="song_request">Give us a song request!</label>
+                    <input type="text" id="song_request" name="song_request" class="form-control" placeholder="Give us the artist and title, please." />
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-offset-1 col-md-10 col-xs-12">
+                    <label for="notes">Add any extra notes here.</label>
+                    <textarea id="notes" name="notes" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div id="form-footer" class="form-group col-md-offset-1 col-md-10 col-xs-12 p-t-md">
+                    <button>Submit</button>
+                    <p id="form-message"></p>
+                </div>
+            </div>
+        </form>
     </div>
     <!-- End Content -->
 
