@@ -22,7 +22,6 @@ $sql = "INSERT INTO rsvp ".
 		"(name, email, attending, num_guests, song_request, notes, created) ".
   		"VALUES ('$name', '$email', $attending, $num_guests, '$song_request', '$notes', NOW())";
 
-/* this query will fail, cause we didn't escape $city */
 if (!$mysqli->query($sql)) {
     printf("Error: %s\n", $mysqli->sqlstate);
 }
