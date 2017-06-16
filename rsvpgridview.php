@@ -22,7 +22,7 @@ if (mysqli_connect_errno()) {
     exit();
 }
 
-$sql = "SELECT name, CASE WHEN attending = 1 THEN 'Yes' ELSE 'NO' END AS attending, CASE WHEN attending = 0 THEN null ELSE num_guests END AS num_guests, song_request, notes FROM rsvp";
+$sql = "SELECT name, CASE WHEN attending = 1 THEN 'Yes' ELSE 'NO' END AS attending, CASE WHEN attending = 0 THEN null ELSE num_guests END AS num_guests, song_request, notes FROM rsvp ORDER BY created desc";
 
 $results = $mysqli->query($sql);
 
