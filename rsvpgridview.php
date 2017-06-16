@@ -13,6 +13,10 @@
 
 <body>
 
+<p style="padding: 10px;">
+    <a href="index.html">Back to Home</a>
+</p>
+
 <?php
 $mysqli = new mysqli("localhost", "meganmeg_admin", "q3PKVtAMm6WXre", "meganmeg_wedding");
 
@@ -27,14 +31,18 @@ $sql = "SELECT name, CASE WHEN attending = 1 THEN 'Yes' ELSE 'NO' END AS attendi
 $results = $mysqli->query($sql);
 
 print '<table class="table table-striped">';
-print '<thead><tr><th>Name</th><th>Attending</th><th>Guests</th><th>Song Request</th><th style="width:50%;">Notes</th></tr><tbody>';
+print '<thead><tr style="background-color:#2F4F4F;color:white"><th>Name</th><th>Attending</th><th>Guests</th><th>Song Request</th><th style="width:50%;">Notes</th></tr><tbody>';
 
 $total_guests = 0;
 $yess = 0;
 $nos = 0;
 
 while($row = $results->fetch_array()) {
-    print '<tr>';
+    print '<tr';
+    if ($row["attending"] == "NO") {
+        print ' style="background-color: #A9A9A9"';
+    }
+    print '>';
     print '<td>'.$row["name"].'</td>';
     print '<td class="'.$row["attending"].'">'.$row["attending"].'</td>';
     print '<td>'.$row["num_guests"].'</td>';
